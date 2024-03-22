@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 
 
-dashboard.bind(app)
+
 def my_exception_hook(exctype, value, trackback):
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S') 
     with open("error.log", "a") as file:
@@ -48,7 +48,7 @@ def index():
         graph_json = fig_map.to_json()
         return render_template('home.html', graph_json=graph_json)
 
-
+dashboard.bind(app)
 
 
 if __name__ == '__main__':
