@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/a459071d210f4b93b6598a01b82e744d/artifacts
+end_time: 1713534247137
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a459071d210f4b93b6598a01b82e744d
+run_name: kindly-deer-653
+run_uuid: a459071d210f4b93b6598a01b82e744d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1713534244964
+status: 3
+tags: []
+user_id: Utilisateur

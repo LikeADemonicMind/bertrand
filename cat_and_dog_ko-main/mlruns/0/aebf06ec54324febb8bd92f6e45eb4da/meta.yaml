@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/aebf06ec54324febb8bd92f6e45eb4da/artifacts
+end_time: 1713530229403
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: aebf06ec54324febb8bd92f6e45eb4da
+run_name: smiling-ant-701
+run_uuid: aebf06ec54324febb8bd92f6e45eb4da
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1713530227157
+status: 3
+tags: []
+user_id: Utilisateur
