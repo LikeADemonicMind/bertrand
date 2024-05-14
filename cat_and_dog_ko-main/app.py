@@ -19,6 +19,8 @@ MODEL_PATH = os.path.join("models", "model.keras")
 model = load_model(MODEL_PATH)
 model.make_predict_function()
 
+import tempfile
+
 def model_predict(img, model):
     img_resized = img.resize((128, 128))  
     x = keras.utils.img_to_array(img_resized)
@@ -37,7 +39,16 @@ def model_predict(img, model):
         result = "Chien" if preds[0][0] < 0.5 else "Chat"
         mlflow.log_param("result", result)
         
+        # Save the image to a temporary file
+        with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as temp_img:
+            img_resized.save(temp_img.name)
+            temp_img.close()
+            
+            # Log the temporary file with MLflow
+            mlflow.log_artifact(temp_img.name, "image.png")
+
     return preds
+
 
 @app.route('/', methods=['GET'])
 def home():
@@ -57,6 +68,16 @@ def upload():
         result = "Chien" if preds[0][0] < 0.5 else "Chat"
         
         return render_template('result.html', result=result, image_base64_front=base64_img)
+    
+    return redirect('/')
+
+@app.route('/prediction_action', methods=['POST'])
+def prediction_action():
+    action = request.form.get('action')
+    
+    # Log the prediction action
+    with mlflow.start_run():
+        mlflow.log_param("prediction_action", action)
     
     return redirect('/')
 
