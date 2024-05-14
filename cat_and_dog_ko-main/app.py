@@ -9,7 +9,20 @@ import base64
 import keras
 import mlflow
 
-app = Flask(__name__)
+import sys
+import time  
+
+app = Flask(__name__) 
+
+
+
+
+def my_exception_hook(exctype, value, trackback):
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S') 
+    with open("error.log", "a") as file:
+        file.write(f"{timestamp} - Exception: {exctype.__name__}, Message: {value}\n")
+
+sys.excepthook = my_exception_hook
 
 # Configuration de MLflow
 mlflow.set_tracking_uri("http://localhost:5000")
